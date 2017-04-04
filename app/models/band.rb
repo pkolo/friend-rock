@@ -8,7 +8,15 @@ class Band < ApplicationRecord
     self.relationships.or(self.more_relationships)
   end
 
+  def pending_requests
+    self.all_relationships.where(:status => 0)
+  end
+
   def sent_requests
-    self.all_relationships.where(:action_band => self, :status => 0)
+    self.pending_requests.where(:action_band => self)
+  end
+
+  def received_requests
+    self.pending_requests.where.not(:action_band => self)
   end
 end
