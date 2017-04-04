@@ -5,7 +5,7 @@ module SessionsHelper
   end
 
   def current_band
-    @current_band ||= band.find_by(id: session[:band_id])
+    @current_band ||= Band.find_by(id: session[:band_id])
   end
 
   def logged_in?
