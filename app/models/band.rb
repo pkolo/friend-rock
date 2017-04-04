@@ -19,4 +19,9 @@ class Band < ApplicationRecord
   def received_requests
     self.pending_requests.where.not(:action_band => self)
   end
+
+  def friendships
+    self.all_relationships.where(:status => 1)
+  end
+
 end
