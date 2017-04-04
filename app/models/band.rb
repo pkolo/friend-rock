@@ -25,15 +25,7 @@ class Band < ApplicationRecord
   end
 
   def friends_list
-    list = self.friendships.inject([]) do |memo, friendship|
-      if friendship.band_one == self
-        other_band = friendship.band_two
-      else
-        other_band = friendship.band_one
-      end
-      memo << other_band
-    end
-    list
+    get_band_list(self.friendships)
   end
 
 end
