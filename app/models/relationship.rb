@@ -10,7 +10,7 @@ class Relationship < ApplicationRecord
 
     def unique_pair
       if self.class.where("(band_one_id = :band_one_id AND band_two_id = :band_two_id) OR (band_one_id = :band_two_id AND band_two_id = :band_one_id)", {:band_one_id => band_one_id, :band_two_id => band_two_id}).exists?
-        errors.add(:band_one_id, :taken)
+        errors.add(:band_one_id, 'Relationship already exists.')
       end
     end
 
