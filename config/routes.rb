@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
-  get '/send_request/:id', to: 'relationships#send_request', :as => "send_request"
+  get '/send_request/:id', to: 'relationships#create'
   get '/accept_request/:id', to: 'relationships#accept_request', :as => "accept_request"
 
   resources :bands, only: [:show, :create]
