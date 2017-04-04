@@ -1,9 +1,6 @@
 <h1>Page for <%= @band.name %></h1>
-<h2>Relationships</h2>
-<% @band.all_relationships.each do |relationship| %>
+<h2>Sent Requests</h2>
+<% @sent_requests.each do |request| %>
+  <%= request.name %>
 
-  <%= relationship.band_one.name %><br>
-  <%= relationship.band_two.name %><br>
-  <%= relationship.status %>
-  <br><br>
 <% end %>

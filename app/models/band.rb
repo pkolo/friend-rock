@@ -25,7 +25,22 @@ class Band < ApplicationRecord
   end
 
   def friends_list
-    get_band_list(self.friendships)
+    self.get_band_list(self.friendships)
+  end
+
+  def get_band_list(relationships)
+    list = relationships.inject([]) do |memo, relationship|
+      memo << self.get_other_band(relationship)
+    end
+    list
+  end
+
+  def get_other_band(relationship)
+    if relationship.band_one == self
+      relationship.band_two
+    else
+      relationship.band_one
+    end
   end
 
 end
