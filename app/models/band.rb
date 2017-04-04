@@ -28,6 +28,14 @@ class Band < ApplicationRecord
     self.get_band_list(self.friendships)
   end
 
+  def relationship_with(other_band)
+    if relationship_exists?(self, other_band)
+      "Relationship exists"
+    else
+      "Relationship doesn't exist"
+    end
+  end
+
   def get_band_list(relationships)
     list = relationships.inject([]) do |memo, relationship|
       memo << self.get_other_band(relationship)
