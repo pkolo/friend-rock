@@ -5,6 +5,10 @@ class Band < ApplicationRecord
   has_many :more_relationships, class_name: Relationship, foreign_key: :band_two_id
 
   def all_relationships
-    (self.relationships + self.more_relationships)
+    self.relationships.or(self.more_relationships)
+  end
+
+  def sent_requests
+    self.all_relationships.where(:action_band => self, :status => 0)
   end
 end
