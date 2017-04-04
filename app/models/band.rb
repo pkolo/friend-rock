@@ -24,4 +24,16 @@ class Band < ApplicationRecord
     self.all_relationships.where(:status => 1)
   end
 
+  def friends_list
+    list = self.friendships.inject([]) do |memo, friendship|
+      if friendship.band_one == self
+        other_band = friendship.band_two
+      else
+        other_band = friendship.band_one
+      end
+      memo << other_band
+    end
+    list
+  end
+
 end
