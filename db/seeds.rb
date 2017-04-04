@@ -11,3 +11,15 @@ Band.create(email: "p@x.com", name: "Handglops", password: "hello22")
 19.times do
   Band.create(email: Faker::Internet.email, name: Faker::RockBand.name, password: "password")
 end
+
+Band.all.each do |band|
+  3.times do
+    band_two = Band.all.sample
+    Relationship.create(band_one: band, band_two: band_two, action_band: band, status: 0)
+  end
+
+  5.times do
+    band_two = Band.all.sample
+    Relationship.create(band_one: band, band_two: band_two, action_band: [band, band_two].sample, status: 1)
+  end
+end
