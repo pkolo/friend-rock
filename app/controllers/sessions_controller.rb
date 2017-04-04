@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
-  
+
   def create
-    band = Band.find_by(email: params[:sesion][:email])
+    band = Band.find_by(email: params[:session][:email])
     if band && band.authenticate(params[:session][:password])
       log_in band
       redirect_to band
