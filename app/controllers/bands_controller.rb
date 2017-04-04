@@ -4,7 +4,7 @@ class BandsController < ApplicationController
     @band = Band.find(params[:id])
     @friends = @band.friends_list
     @sent_requests = @band.get_band_list(@band.sent_requests)
-    @receieved_requests = @band.get_band_list(@band.received_requests)
+    @received_requests = @band.get_band_list(@band.received_requests)
   end
 
   def new

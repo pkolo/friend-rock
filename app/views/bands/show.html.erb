@@ -1,6 +1,16 @@
 <h1>Page for <%= @band.name %></h1>
+
+<h2>Friends</h2>
+<% @friends.each do |friend| %>
+  <%= friend.name %> (<%= friend.id %>)
+<% end %>
+
 <h2>Sent Requests</h2>
 <% @sent_requests.each do |request| %>
-  <%= request.name %>
+  <%= request.name %> (<%= request.id %>)
+<% end %>
 
+<h2>Recieved Requests</h2>
+<% @received_requests.each do |request| %>
+  <%= request.name %> (<%= request.id %>)
 <% end %>
