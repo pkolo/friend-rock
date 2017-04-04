@@ -5,12 +5,16 @@
   <p><%= friend.name %> (<%= friend.id %>)</p>
 <% end %>
 
-<h2>Sent Requests</h2>
-<% @sent_requests.each do |request| %>
-  <p><%= request.name %> (<%= request.id %>)</p>
-<% end %>
+<% if authorized?(@band) %>
 
-<h2>Recieved Requests</h2>
-<% @received_requests.each do |request| %>
-  <p><%= request.name %> (<%= request.id %>) - <%= link_to 'Accept Request', accept_request_path(request.id) %></p>
+  <h2>Sent Requests</h2>
+  <% @sent_requests.each do |request| %>
+    <p><%= request.name %> (<%= request.id %>)</p>
+  <% end %>
+
+  <h2>Received Requests</h2>
+  <% @received_requests.each do |request| %>
+    <p><%= request.name %> (<%= request.id %>) - <%= link_to 'Accept Request', accept_request_path(request.id) %></p>
+  <% end %>
+
 <% end %>

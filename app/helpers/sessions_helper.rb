@@ -8,6 +8,10 @@ module SessionsHelper
     @current_band ||= Band.find_by(id: session[:band_id])
   end
 
+  def authorized?(band)
+    current_band == band
+  end
+
   def logged_in?
     !current_band.nil?
   end
