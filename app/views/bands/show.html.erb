@@ -1,7 +1,12 @@
 <h1>Page for <%= @band.name %></h1>
 
+<h2>Mutual Friends</h2>
+<% (@band.friends_list & current_band.friends_list).each do |friend| %>
+  <p><%= friend.name %></p>
+<% end %>
+
 <h2>Friends</h2>
-<% @friends.each do |friend| %>
+<% (@band.friends_list - current_band.friends_list).each do |friend| %>
   <p><%= friend.name %> (<%= friend.id %>)</p>
 <% end %>
 
