@@ -34,6 +34,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pry-rails', :group => :development
 gem 'faker'
 gem 'geocoder'
+gem 'acts-as-taggable-on', '~> 4.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
