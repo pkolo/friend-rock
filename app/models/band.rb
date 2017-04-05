@@ -4,6 +4,13 @@ class Band < ApplicationRecord
   has_many :relationships, foreign_key: :band_one_id
   has_many :more_relationships, class_name: Relationship, foreign_key: :band_two_id
 
+  geocoded_by :address
+  after_validation :geocode
+
+  def address
+    [city, state, country].compact.join(', ')
+  end
+
   def all_relationships
     self.relationships.or(self.more_relationships)
   end
