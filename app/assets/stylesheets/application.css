@@ -15,8 +15,9 @@
  */
 
 body {
-  max-width: 960px;
+  max-width: 1200px;
   margin: 10px auto;
+  font-family: 'Palanquin Dark', sans-serif;
 }
 
 header {
@@ -24,6 +25,5 @@ header {
 }
 
 nav {
-  position: absolute;
   float: right;
 }
