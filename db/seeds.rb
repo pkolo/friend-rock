@@ -8,8 +8,37 @@
 
 Band.create(email: "p@x.com", name: "Handglops", password: "hello22", city: "Brooklyn", state: "NY", country: "USA")
 
+locations = [
+  {
+    city: "Toledo",
+    state: "OH",
+    country: "USA"
+  },
+  {
+    city: "Toronto",
+    state: "ON",
+    country: "Canada"
+  },
+  {
+    city: "Sacramento",
+    state: "CA",
+    country: "USA"
+  },
+  {
+    city: "Columbus",
+    state: "OH",
+    country: "USA"
+  },
+  {
+    city: "Chicago",
+    state: "IL",
+    country: "USA"
+  }
+]
+
 19.times do
-  Band.create(email: Faker::Internet.email, name: Faker::RockBand.name, password: "password")
+  loc = locations.sample
+  Band.create(email: Faker::Internet.email, name: Faker::RockBand.name, password: "password", city: loc[:city], state: loc[:state], country: loc[:country])
 end
 
 Band.all.each do |band|
