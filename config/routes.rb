@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post '/send_request/:id', to: 'relationships#create', :as => "send_request"
   get '/accept_request/:id', to: 'relationships#accept_request', :as => "accept_request"
 
+  get '/tags/:tag_name', to: 'tags#show'
+  
   resources :bands, only: [:show, :create]
 
 end
