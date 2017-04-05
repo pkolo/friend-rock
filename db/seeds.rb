@@ -36,9 +36,15 @@ locations = [
   }
 ]
 
+genres = ["Bubblegum", "Garage Pop", "Punk", "New Wave", "Lo-Fi", "Indiepop", "Postpunk", "Indie Rock", "Hardcore", "Synthpop", "Metal", "Darkwave", "Hometaper", "Pop", "Rock n Roll"]
+
 19.times do
   loc = locations.sample
-  Band.create(email: Faker::Internet.email, name: Faker::RockBand.name, password: "password", city: loc[:city], state: loc[:state], country: loc[:country])
+  band = Band.create(email: Faker::Internet.email, name: Faker::RockBand.name, password: "password", city: loc[:city], state: loc[:state], country: loc[:country])
+  3.times do
+    band.genre_list.add(genres.sample)
+    band.save
+  end
 end
 
 Band.all.each do |band|
