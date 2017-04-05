@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Band.create(email: "p@x.com", name: "Handglops", password: "hello22")
+Band.create(email: "p@x.com", name: "Handglops", password: "hello22", city: "Brooklyn", state: "NY", country: "USA")
 
 19.times do
   Band.create(email: Faker::Internet.email, name: Faker::RockBand.name, password: "password")
