@@ -35,6 +35,7 @@ gem 'pry-rails', :group => :development
 gem 'faker'
 gem 'geocoder'
 gem 'acts-as-taggable-on', '~> 4.0'
+gem 'google-webfonts-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
