@@ -29,11 +29,16 @@ class Band < ApplicationRecord
   end
 
   def relationship_with(other_band)
-    if relationship_exists?(self, other_band)
-      "Relationship exists"
-    else
-      "Relationship doesn't exist"
+    relationship = self.find_relationship(other_band)
+    if relationship.status == 0
+      "Pending"
+    elsif relationship.status == 1
+      "Friends"
     end
+  end
+
+  def find_relationship(other_band)
+    Relationship.where(band_one: self, band_two: other_band).or(Relationship.where(band_one: other_band, band_two: self)).first
   end
 
   def get_band_list(relationships)

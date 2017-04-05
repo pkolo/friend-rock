@@ -1,9 +1,9 @@
 <h1>Page for <%= @band.name %></h1>
 
-<% if !relationship_exists?(current_band, @band) %>
-  <p>No relationship exists - <%= link_to 'Send friend request', send_request_path(@band.id), :method => :post %> </p>
+<% if relationship_exists?(current_band, @band) %>
+  <%= current_band.relationship_with(@band) %>
 <% else %>
-  <p>Relationship exists</p>
+  <%= link_to 'Send friend request', send_request_path(@band.id), :method => :post %>
 <% end %>
 
 <h2>Mutual Friends</h2>
