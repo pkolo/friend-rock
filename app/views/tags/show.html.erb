@@ -1,0 +1,5 @@
+<h1>Bands tagged with <%= @tag_name %></h1>
+
+<% @list.each do |band| %>
+  <p><%= band.name %></p>
+<% end %>
