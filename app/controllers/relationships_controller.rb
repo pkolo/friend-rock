@@ -1,7 +1,12 @@
 class RelationshipsController < ApplicationController
 
   def create
-    Relationship.new(band_one: current_band, band_two: Band.find(params[:id]), action_band: current_band, status: 0)
+    relationship = Relationship.new(band_one: current_band, band_two: Band.find(params[:id]), action_band: current_band, status: 0)
+    if relationship.save
+      redirect_to current_band
+    else
+      redirect_to root_url
+    end
   end
 
   def accept_request
