@@ -1,5 +1,5 @@
 <h1>Page for <%= @band.name %></h1>
-<p><%= @band.address %> - <%= @band.genre_list.join(', ') %></p>
+<p><%= @band.address %> - <%= link_to @band.genre_list.first, tag_path(@band.genre_list.first) %></p>
 
 <% if relationship_exists?(current_band, @band) %>
   <%= current_band.relationship_with(@band) %>
