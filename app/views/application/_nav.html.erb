@@ -1,7 +1,13 @@
-<% if logged_in? %>
-  <%= link_to current_band.name, current_band %> |
-  <%= link_to "logout",  logout_path %>
-<% else %>
-  <%= link_to "register", register_path %> |
-  <%= link_to "login",  login_path %>
-<% end %>
+<header>
+  <img src="/img/friendronk_sm.jpg" alt="logo" />
+
+  <nav>
+    <% if logged_in? %>
+      <%= link_to current_band.name, current_band %> |
+      <%= link_to "logout",  logout_path %>
+    <% else %>
+      <%= link_to "register", register_path %> |
+      <%= link_to "login",  login_path %>
+    <% end %>
+  </nav>
+</header>
