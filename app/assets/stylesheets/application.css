@@ -16,14 +16,22 @@
 
 body {
   max-width: 1200px;
-  margin: 10px auto;
-  font-family: 'Palanquin Dark', sans-serif;
+  margin: 15px auto;
+  font-family: 'Dosis';
 }
 
 header {
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 }
 
 nav {
+  float: right;
+}
+
+.player {
+  width: 550px;
+  height: 375px;
+  background-color: #ababab;
+  border: 1px black solid;
   float: right;
 }
