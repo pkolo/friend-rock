@@ -24,6 +24,18 @@
   margin: 10px 0;
 }
 
-.location {
+.location,
+.relationship {
   margin-bottom: 10px;
+}
+
+.profile:before,
+.profile:after {
+ display: table;
+ line-height: 0;
+ content: "";
+}
+
+.profile:after {
+  clear: both;
 }
