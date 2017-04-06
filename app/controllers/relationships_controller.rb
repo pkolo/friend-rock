@@ -1,5 +1,10 @@
 class RelationshipsController < ApplicationController
 
+  def index
+    @band = Band.find(params[:id])
+    @mutual_friends = current_band.get_mutual_friends
+  end
+
   def create
     relationship = Relationship.new(band_one: current_band, band_two: Band.find(params[:id]), action_band: current_band, status: 0)
     if relationship.save
