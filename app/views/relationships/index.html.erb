@@ -19,9 +19,13 @@
 </div>
 
 <div class="friends-list">
-  <h2>Mutual friends</h2>
   <% @mutual_friends.each do |friend| %>
-    <p><%= link_to friend.name, band_path(friend) %></p>
+    <div class="friend-panel row">
+      <img src="/img/samp.jpg" class="col-md-2 no-gutter" />
+      <div class="friend-info col-md-10">
+        <%= link_to friend.name, band_path(friend) %>
+      </div>
+    </div>
   <% end %>
 
   <h2>Other friends</h2>
