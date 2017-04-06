@@ -37,6 +37,14 @@ class Band < ApplicationRecord
     self.get_band_list(self.friendships)
   end
 
+  def get_mutual_friends(other_band)
+    self.friends_list & other_band.friends_list
+  end
+
+  def get_other_friends(other_band)
+    other_band.friends_list - (self.get_mutual_friends(other_band))
+  end
+
   def relationship_with(other_band)
     relationship = self.find_relationship(other_band)
     if relationship.status == 0
