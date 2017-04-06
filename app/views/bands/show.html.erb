@@ -24,7 +24,7 @@
 <div class="top-friends">
   <h2>Best Friends</h2>
   <% (@band.friends_list & current_band.friends_list).each do |friend| %>
-    <p><%= friend.name %></p>
+    <p><%= link_to friend.name, friend %></p>
   <% end %>
 
   <% if authorized?(@band) %>
