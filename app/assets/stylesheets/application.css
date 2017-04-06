@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  max-width: 1200px;
+  margin: 15px auto;
+  font-family: 'Dosis';
+}
+
+header {
+  margin-bottom: 25px;
+}
+
+nav {
+  float: right;
+}
+
+.player {
+  width: 550px;
+  height: 375px;
+  background-color: #ababab;
+  border: 1px black solid;
+  float: right;
+}

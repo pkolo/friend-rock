@@ -1,3 +1,41 @@
 // Place all the styles related to the bands controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.profile {
+  width: 50%;
+  float: left;
+  padding: 10px;
+  border: 1px black solid;
+}
+
+.profile-pic {
+  margin-right: 10px;
+  float: left;
+}
+
+.band-info {
+  width: 300px;
+  overflow: hidden;
+}
+
+.band-name {
+  font-size: 25px;
+  margin: 10px 0;
+}
+
+.location,
+.relationship {
+  margin-bottom: 10px;
+}
+
+.profile:before,
+.profile:after {
+ display: table;
+ line-height: 0;
+ content: "";
+}
+
+.profile:after {
+  clear: both;
+}
