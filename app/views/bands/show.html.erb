@@ -13,7 +13,7 @@
       <% end %>
     </div>
 
-    <%= link_to @band.genre_list.first, tag_path(@band.genre_list.first) %></p>
+    <p>Tags: <%= @band.genre_list.map { |genre| link_to genre, tag_path(genre) }.join(', ').html_safe %></p>
 
   </div>
 </div>
