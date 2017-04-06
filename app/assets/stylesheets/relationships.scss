@@ -4,24 +4,22 @@
 
 .friends-list {
   float: left;
-  margin-left: 25px;
+  margin-left: 10px;
   width: 800px;
 }
 
 .friend-panel {
   max-width: 750px;
-  padding-bottom: 10px;
   margin-bottom: 10px;
 }
 
 .friend-info {
-  height: 95px;
   margin-left: -15px;
   border: 1px solid black;
 }
 
 .friend-name {
-  font-size: 16px;
+  font-size: 1.5em;
 }
 
 .top-friends {
