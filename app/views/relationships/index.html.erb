@@ -1,0 +1,10 @@
+<h1>Friends of <%= @band.name %></h1>
+<h2>Mutual friends</h2>
+<% @mutual_friends.each do |friend| %>
+  <p><%= link_to friend.name, band_path(friend) %></p>
+<% end %>
+
+<h2>Other friends</h2>
+<% @other_friends.each do |friend| %>
+  <p><%= link_to friend.name, band_path(friend) %></p>
+<% end %>

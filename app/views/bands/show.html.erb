@@ -27,6 +27,8 @@
     <p><%= link_to friend.name, friend %></p>
   <% end %>
 
+  <h4><%= link_to "Show all friends...", band_relationships_path(@band) %></h4>
+
   <% if authorized?(@band) %>
 
     <h2>Sent Requests</h2>
