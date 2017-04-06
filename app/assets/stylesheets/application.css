@@ -33,5 +33,6 @@ nav {
   height: 375px;
   background-color: #ababab;
   border: 1px black solid;
-  float: right;
+  float: left;
+  margin-left: 20px;
 }
