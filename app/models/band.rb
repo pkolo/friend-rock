@@ -21,11 +21,6 @@ class Band < ApplicationRecord
     end
   end
 
-  def get_tag_links
-    tag_links = self.genre_list.inject([]) { |memo, genre| memo << "<%= link_to #{genre}, tag_path(#{genre}) %>" }
-    tag_links.join(', ')
-  end
-
   def all_relationships
     self.relationships.or(self.more_relationships)
   end
