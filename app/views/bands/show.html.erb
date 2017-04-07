@@ -21,13 +21,9 @@
 <div class="player">
 </div>
 
-<div class="top-friends">
-  <h2>Best Friends</h2>
-  <% (@band.friends_list & current_band.friends_list).each do |friend| %>
-    <p><%= link_to friend.name, friend %></p>
-  <% end %>
+<%= render partial: "relationships/friend_list", locals: { friends: current_band.get_mutual_friends(@band).first(5) } %>
 
-  <h4><%= link_to "Show all friends...", band_relationships_path(@band) %></h4>
+  <p><%= link_to "View all friends...", band_relationships_path(@band) %></p>
 
   <% if authorized?(@band) %>
 
