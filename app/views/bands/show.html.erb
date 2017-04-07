@@ -1,22 +1,4 @@
-<div class="profile">
-  <img src="/img/samp.jpg" class="profile-pic" />
-  <div class="band-info">
-    <div class="band-name"><%= @band.name %></div>
-
-    <div class="location"><%= @band.address %></div>
-
-    <div class="relationship">
-      <% if relationship_exists?(current_band, @band) %>
-        <%= current_band.relationship_with(@band) %>
-      <% else %>
-        <%= link_to 'Send friend request', send_request_path(@band.id), :method => :post %>
-      <% end %>
-    </div>
-
-    <p>Tags: <%= @band.genre_list.map { |genre| link_to genre, tag_path(genre) }.join(', ').html_safe %></p>
-
-  </div>
-</div>
+<%= render partial: "profile_sidebar", locals: { band: @band } %>
 
 <div class="player">
 </div>
