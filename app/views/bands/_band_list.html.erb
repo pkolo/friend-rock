@@ -1,0 +1,19 @@
+<div class="friends-list">
+  <% bands.each do |band| %>
+    <div class="friend-panel row">
+
+      <img src="/img/samp.jpg" class="col-md-2" />
+
+      <div class="col-md-5">
+        <div class="friend-name"><%= link_to band.name, band_path(band) %></div>
+        <p><%= band.short_address %></p>
+        <p><%= current_band.relationship_with(band) %></p>
+      </div>
+
+      <div class="col-md-5">
+        <p><%= current_band.get_mutual_friends(band).count %> mutual friends</p>
+        <p>Tags: <%= band.genre_list.map { |genre| link_to genre, tag_path(genre) }.join(', ').html_safe %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

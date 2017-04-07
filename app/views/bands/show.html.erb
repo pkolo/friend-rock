@@ -3,7 +3,7 @@
 <div class="player">
 </div>
 
-<%= render partial: "relationships/friend_list", locals: { friends: current_band.get_mutual_friends(@band).first(5) } %>
+<%= render partial: "band_list", locals: { bands: current_band.get_mutual_friends(@band).first(5) } %>
 
   <p><%= link_to "View all friends...", band_relationships_path(@band) %></p>
 
