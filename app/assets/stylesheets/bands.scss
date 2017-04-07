@@ -3,20 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .profile {
-  width: 50%;
+  width: 270px;
   float: left;
-  padding: 10px;
   border: 1px black solid;
 }
 
 .profile-pic {
-  margin-right: 10px;
+  padding: 10px;
   float: left;
 }
 
 .band-info {
-  width: 300px;
-  overflow: hidden;
+  width: 270px;
+  padding: 10px;
 }
 
 .band-name {
