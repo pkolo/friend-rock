@@ -2,8 +2,9 @@ class RelationshipsController < ApplicationController
 
   def index
     @band = Band.find(params[:band_id])
-    @mutual_friends = current_band.get_mutual_friends(@band)
-    @other_friends = current_band.get_other_friends(@band)
+    mutual_friends = current_band.get_mutual_friends(@band)
+    other_friends = current_band.get_other_friends(@band)
+    @friends = mutual_friends + other_friends
   end
 
   def create
