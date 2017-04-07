@@ -18,39 +18,4 @@
   </div>
 </div>
 
-<div class="friends-list">
-  <% @mutual_friends.each do |friend| %>
-    <div class="friend-panel row">
-
-      <img src="/img/samp.jpg" class="col-md-2" />
-
-      <div class="col-md-5">
-        <div class="friend-name"><%= link_to friend.name, band_path(friend) %></div>
-        <p><%= friend.short_address %></p>
-        <p><%= current_band.relationship_with(friend) %></p>
-      </div>
-
-      <div class="col-md-5">
-        <p><%= current_band.get_mutual_friends(friend).count %> mutual friends</p>
-        <p>Tags: <%= friend.genre_list.map { |genre| link_to genre, tag_path(genre) }.join(', ').html_safe %></p>
-      </div>
-    </div>
-  <% end %>
-
-  <% @other_friends.each do |friend| %>
-    <div class="friend-panel row">
-      <img src="/img/samp.jpg" class="col-md-2" />
-
-      <div class="col-md-5">
-        <div class="friend-name"><%= link_to friend.name, band_path(friend) %></div>
-        <p><%= friend.short_address %></p>
-        <p><%= current_band.relationship_with(friend) %></p>
-      </div>
-
-      <div class="col-md-5">
-        <p><%= current_band.get_mutual_friends(friend).count %> mutual friends</p>
-        <p>Tags: <%= friend.genre_list.map { |genre| link_to genre, tag_path(genre) }.join(', ').html_safe %></p>
-      </div>
-    </div>
-  <% end %>
-</div>
+<%= render partial: "friend_list", locals: { friends: @friends } %>
