@@ -9,6 +9,10 @@ class Band < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
 
+  def self.name_search(query)
+    self.where("similarity(name, ?) > 0.3", query).order("similarity(name, #{ActiveRecord::Base.connection.quote(query)}) DESC")
+  end
+
   def address
     [city, state, country].compact.join(', ')
   end

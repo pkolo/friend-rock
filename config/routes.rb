@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get '/tags/:tag_name', to: 'tags#show', :as => "tag"
 
+  get '/search', to: 'bands#search'
+
   resources :bands, only: [:show, :create] do
     resources :relationships, only: [:index]
   end

@@ -1,0 +1,6 @@
+<form method="GET" action="/search">
+  <input placeholder="Search" id="search" type="text" name="q" />
+  <input type="submit">
+</form>
+
+<%= render partial: "band_list", locals: { bands: @bands } %>

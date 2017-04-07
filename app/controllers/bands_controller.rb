@@ -20,7 +20,20 @@ class BandsController < ApplicationController
     else
       render 'new'
     end
+  end
 
+  def search
+    if params[:q].present?
+      @bands = Band.name_search(params[:q])
+    else
+      @bands = Band.all
+    end
+
+    render 'search'
+  end
+
+  def self.name_search(query)
+    self.where("similarity(name, ?) > 0.3", query).order("similarity(name, #{ActiveRecord::Base.connection.quote(query)}) DESC")
   end
 
 protected
