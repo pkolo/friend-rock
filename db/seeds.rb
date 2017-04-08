@@ -6,7 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Band.create(email: "p@x.com", name: "Handglops", password: "hello22", city: "Brooklyn", state: "NY", country: "USA")
+Location.create(city: "Brooklyn", state: "NY", country: "USA")
+
+Band.create(email: "p@x.com", name: "Handglops", password: "hello22", location: Location.first)
 
 locations = [
   {
@@ -33,6 +35,11 @@ locations = [
     city: "Chicago",
     state: "IL",
     country: "USA"
+  },
+  {
+    city: "Brooklyn",
+    state: "NY",
+    country: "USA"
   }
 ]
 
@@ -40,7 +47,8 @@ genres = ["Bubblegum", "Garage Pop", "Punk", "New Wave", "Lo-Fi", "Indiepop", "P
 
 19.times do
   loc = locations.sample
-  band = Band.create(email: Faker::Internet.email, name: Faker::RockBand.name, password: "password", city: loc[:city], state: loc[:state], country: loc[:country])
+  band_loc = Location.find_or_create_by(city: loc[:city], state: loc[:state], country: loc[:country])
+  band = Band.create(email: Faker::Internet.email, name: Faker::RockBand.name, password: "password", location: band_loc)
   3.times do
     band.genre_list.add(genres.sample)
     band.save
