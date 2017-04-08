@@ -22,18 +22,6 @@ class Band < ApplicationRecord
     self.where("similarity(name, ?) > 0.3", query).order("similarity(name, #{ActiveRecord::Base.connection.quote(query)}) DESC")
   end
 
-  def address
-    [city, state, country].compact.join(', ')
-  end
-
-  def short_address
-    if self.country == "USA" || self.country == "United States"
-      [city, state].compact.join(', ')
-    else
-      self.address
-    end
-  end
-
   def get_mutual_friends(other_band)
     friends & other_band.friends
   end
