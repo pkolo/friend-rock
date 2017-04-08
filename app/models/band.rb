@@ -3,8 +3,12 @@ class Band < ApplicationRecord
   acts_as_taggable
   acts_as_taggable_on :genres
 
-  has_many :relationships, foreign_key: :band_one_id
-  has_many :more_relationships, class_name: Relationship, foreign_key: :band_two_id
+  # has_many :relationships, foreign_key: :band_one_id
+  # has_many :more_relationships, class_name: Relationship, foreign_key: :band_two_id
+
+  has_many :relationships, ->(band) { unscope(:where).where("band_one_id = :id OR band_two_id = :id", id: band.id) }
+
+  has_many :friendships, ->(band) { unscope(:where).where("band_one_id = :id OR band_two_id = :id", id: band.id).where("status = :code", code: 1) }, class_name: Relationship
 
   has_many :related_bands, through: :relationships, source: :band_two
   has_many :more_related_bands, through: :more_relationships, source: :band_one
@@ -36,20 +40,12 @@ class Band < ApplicationRecord
     self.relationships.or(self.more_relationships)
   end
 
-  def pending_requests
-    self.all_relationships.where(:status => 0)
-  end
-
   def sent_requests
     self.pending_requests.where(:action_band => self)
   end
 
   def received_requests
     self.pending_requests.where.not(:action_band => self)
-  end
-
-  def friendships
-    self.all_relationships.where(:status => 1)
   end
 
   def friends_list
