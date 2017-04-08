@@ -20,7 +20,17 @@ class BandsController < ApplicationController
     else
       render 'new'
     end
+  end
 
+  def search
+    query = params[:q]
+    if query.present?
+      @bands = Band.name_search(query[:name])
+    else
+      @bands = Band.all
+    end
+
+    render 'search'
   end
 
 protected

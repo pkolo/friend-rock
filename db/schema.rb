@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405135354) do
+ActiveRecord::Schema.define(version: 20170407202642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
 
   create_table "bands", force: :cascade do |t|
     t.string   "name",                         null: false
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170405135354) do
     t.string   "country",         default: "", null: false
     t.float    "latitude"
     t.float    "longitude"
+    t.index ["name"], name: "index_bands_on_name", using: :btree
   end
 
   create_table "relationships", force: :cascade do |t|
