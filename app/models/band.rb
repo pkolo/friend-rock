@@ -14,6 +14,8 @@ class Band < ApplicationRecord
 
   has_many :received_requests, ->(band) { unscope(:where).where("band_one_id = :id OR band_two_id = :id", id: band.id).where("status = :code AND action_band_id != :id", code: 0, id: band.id) }, class_name: Relationship
 
+  has_many :friends, through: :friendships, class_name: Band, foreign_key: :band_two_id
+
   has_many :related_bands, through: :relationships, source: :band_two
   has_many :more_related_bands, through: :more_relationships, source: :band_one
 
