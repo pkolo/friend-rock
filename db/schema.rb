@@ -10,21 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170408160335) do
+ActiveRecord::Schema.define(version: 20170408220626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
 
   create_table "bands", force: :cascade do |t|
-    t.string   "name",                         null: false
-    t.string   "email",                        null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "password_digest",              null: false
-    t.string   "city",            default: "", null: false
-    t.string   "state",           default: "", null: false
-    t.string   "country",         default: "", null: false
+    t.string   "name",            null: false
+    t.string   "email",           null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest", null: false
     t.index ["name"], name: "index_bands_on_name", using: :btree
   end
 
