@@ -6,6 +6,9 @@ class Band < ApplicationRecord
   has_many :relationships, foreign_key: :band_one_id
   has_many :more_relationships, class_name: Relationship, foreign_key: :band_two_id
 
+  has_many :related_bands, through: :relationships, source: :band_two
+  has_many :more_related_bands, through: :more_relationships, source: :band_one
+
   geocoded_by :address
   after_validation :geocode
 
