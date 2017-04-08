@@ -26,7 +26,7 @@ class Relationship < ApplicationRecord
   end
 
   def inverse_relationship_options
-    { band_two_id: band_one_id, band_one_id: band_two_id, action_band_id: action_band_id, status: 0 }
+    { band_two_id: band_one_id, band_one_id: band_two_id, action_band_id: action_band_id, status: status }
   end
 
   private
