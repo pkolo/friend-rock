@@ -41,7 +41,7 @@ class Band < ApplicationRecord
   end
 
   def relationship_with(other_band)
-    relationship = self.find_relationship(other_band)
+    relationship = self.find_relationship(other_band).first
     if relationship
       if relationship.status == 0
         "Pending"

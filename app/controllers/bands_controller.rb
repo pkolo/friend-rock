@@ -2,9 +2,9 @@ class BandsController < ApplicationController
 
   def show
     @band = Band.find(params[:id])
-    @friends = @band.friends_list
-    @sent_requests = @band.get_band_list(@band.sent_requests)
-    @received_requests = @band.get_band_list(@band.received_requests)
+    @friends = @band.friends
+    @sent_requests = @band.sent_requests_to
+    @received_requests = @band.received_requests_from
   end
 
   def new
