@@ -10,6 +10,10 @@ class Band < ApplicationRecord
 
   has_many :friendships, ->(band) { unscope(:where).where("band_one_id = :id OR band_two_id = :id", id: band.id).where("status = :code", code: 1) }, class_name: Relationship
 
+  has_many :sent_requests, ->(band) { unscope(:where).where("band_one_id = :id OR band_two_id = :id", id: band.id).where("status = :code AND action_band_id = :id", code: 0, id: band.id) }, class_name: Relationship
+
+  has_many :received_requests, ->(band) { unscope(:where).where("band_one_id = :id OR band_two_id = :id", id: band.id).where("status = :code AND action_band_id != :id", code: 0, id: band.id) }, class_name: Relationship
+
   has_many :related_bands, through: :relationships, source: :band_two
   has_many :more_related_bands, through: :more_relationships, source: :band_one
 
@@ -34,18 +38,6 @@ class Band < ApplicationRecord
 
   def all_related_bands
     related_bands.or(more_related_bands)
-  end
-
-  def all_relationships
-    self.relationships.or(self.more_relationships)
-  end
-
-  def sent_requests
-    self.pending_requests.where(:action_band => self)
-  end
-
-  def received_requests
-    self.pending_requests.where.not(:action_band => self)
   end
 
   def friends_list
