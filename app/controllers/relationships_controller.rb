@@ -18,8 +18,7 @@ class RelationshipsController < ApplicationController
 
   def accept_request
     #Change to relationship validation helper
-    relationship = Relationship.where(:band_one_id => params[:id], :band_two_id => current_band.id, :action_band_id => params[:id], :status => 0)
-
+    relationship = current_band.received_requests.where(band_two: Band.find(params[:id]))
     if relationship.any?
       relationship.first.update_attributes(:action_band => current_band, :status => 1)
       redirect_to current_band
