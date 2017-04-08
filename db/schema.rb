@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407202642) do
+ActiveRecord::Schema.define(version: 20170408160335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,6 @@ ActiveRecord::Schema.define(version: 20170407202642) do
     t.string   "city",            default: "", null: false
     t.string   "state",           default: "", null: false
     t.string   "country",         default: "", null: false
-    t.float    "latitude"
-    t.float    "longitude"
     t.index ["name"], name: "index_bands_on_name", using: :btree
   end
 

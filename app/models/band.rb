@@ -4,10 +4,17 @@ class Band < ApplicationRecord
   acts_as_taggable_on :genres
 
   has_many :relationships, foreign_key: :band_one_id
-  has_many :more_relationships, class_name: Relationship, foreign_key: :band_two_id
 
-  geocoded_by :address
-  after_validation :geocode
+  has_many :friendships, -> { where("status = :code", code: 1) }, class_name: Relationship, foreign_key: :band_one_id
+
+  has_many :sent_requests, ->(band) { where("action_band_id = :id AND status = :code", id: band.id, code: 0) }, class_name: Relationship, foreign_key: :band_one_id
+
+  has_many :received_requests, ->(band) { where("action_band_id != :id AND status = :code", id: band.id, code: 0) }, class_name: Relationship, foreign_key: :band_one_id
+
+  has_many :related_bands, through: :relationships, source: :band_two, dependent: :destroy
+  has_many :friends, through: :friendships, source: :band_two
+  has_many :sent_requests_to, through: :sent_requests, source: :band_two
+  has_many :received_requests_from, through: :received_requests, source: :band_two
 
   def self.name_search(query)
     self.where("similarity(name, ?) > 0.3", query).order("similarity(name, #{ActiveRecord::Base.connection.quote(query)}) DESC")
@@ -25,24 +32,8 @@ class Band < ApplicationRecord
     end
   end
 
-  def all_relationships
-    self.relationships.or(self.more_relationships)
-  end
-
-  def pending_requests
-    self.all_relationships.where(:status => 0)
-  end
-
-  def sent_requests
-    self.pending_requests.where(:action_band => self)
-  end
-
-  def received_requests
-    self.pending_requests.where.not(:action_band => self)
-  end
-
-  def friendships
-    self.all_relationships.where(:status => 1)
+  def all_related_bands
+    related_bands.or(more_related_bands)
   end
 
   def friends_list
