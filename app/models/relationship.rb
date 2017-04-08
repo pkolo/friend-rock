@@ -7,6 +7,7 @@ class Relationship < ApplicationRecord
   validate :cannot_add_self
 
   after_create :create_inverse, unless: :has_inverse?
+  after_update :update_inverse
   after_destroy :destroy_inverses, if: :has_inverse?
 
   def create_inverse
@@ -15,6 +16,14 @@ class Relationship < ApplicationRecord
 
   def destroy_inverses
     inverses.destroy_all
+  end
+
+  def update_inverse
+    relationship = self.class.where(band_one: band_two, band_two: band_one).first
+    binding.pry
+    if status != relationship.status
+      relationship.update_attributes(action_band: action_band, status: status)
+    end
   end
 
   def has_inverse?
