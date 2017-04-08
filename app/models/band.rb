@@ -3,6 +3,8 @@ class Band < ApplicationRecord
   acts_as_taggable
   acts_as_taggable_on :genres
 
+  belongs_to :location
+
   has_many :relationships, foreign_key: :band_one_id
 
   has_many :friendships, -> { where("status = :code", code: 1) }, class_name: Relationship, foreign_key: :band_one_id
