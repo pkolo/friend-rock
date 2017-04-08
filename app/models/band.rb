@@ -28,6 +28,10 @@ class Band < ApplicationRecord
     end
   end
 
+  def all_related_bands
+    related_bands.or(more_related_bands)
+  end
+
   def all_relationships
     self.relationships.or(self.more_relationships)
   end
