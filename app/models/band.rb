@@ -19,9 +19,6 @@ class Band < ApplicationRecord
   has_many :related_bands, through: :relationships, source: :band_two
   has_many :more_related_bands, through: :more_relationships, source: :band_one
 
-  geocoded_by :address
-  after_validation :geocode
-
   def self.name_search(query)
     self.where("similarity(name, ?) > 0.3", query).order("similarity(name, #{ActiveRecord::Base.connection.quote(query)}) DESC")
   end
