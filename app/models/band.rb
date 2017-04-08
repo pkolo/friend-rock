@@ -4,10 +4,17 @@ class Band < ApplicationRecord
   acts_as_taggable_on :genres
 
   has_many :relationships, foreign_key: :band_one_id
+
   has_many :friendships, -> { where("status = :code", code: 1) }, class_name: Relationship, foreign_key: :band_one_id
+
+  has_many :sent_requests, ->(band) { where("action_band_id = :id AND status = :code", id: band.id, code: 0) }, class_name: Relationship, foreign_key: :band_one_id
+
+  has_many :received_requests, ->(band) { where("action_band_id != :id AND status = :code", id: band.id, code: 0) }, class_name: Relationship, foreign_key: :band_one_id
 
   has_many :related_bands, through: :relationships, source: :band_two, dependent: :destroy
   has_many :friends, through: :friendships, source: :band_two
+  has_many :sent_requests_to, through: :sent_requests, source: :band_two
+  has_many :received_requests_from, through: :received_requests, source: :band_two
 
   def self.name_search(query)
     self.where("similarity(name, ?) > 0.3", query).order("similarity(name, #{ActiveRecord::Base.connection.quote(query)}) DESC")
