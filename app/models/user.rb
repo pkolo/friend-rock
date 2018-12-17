@@ -8,7 +8,7 @@ class User < ApplicationRecord
   end
 
   def self.valid_login?(params)
-    user = find_by(name: params["name"])
+    user = find_by(email: params["email"])
     if user && user.authenticate(params["password"])
       user
     end

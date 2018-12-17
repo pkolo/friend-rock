@@ -3,8 +3,6 @@ Rails.application.routes.draw do
     namespace :v1 do
       post   "/login"       => "sessions#create"
       delete "/logout"      => "sessions#destroy"
-
-      get "/auth" => "users#auth"
     end
   end
 end
