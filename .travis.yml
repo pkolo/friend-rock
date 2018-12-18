@@ -4,4 +4,5 @@ rvm:
 addons:
   postgresql: "9.6"
 before_script:
-  - cp config/database.yml.travis config/database.yml
+  - "psql -c 'create database friend_rock_test;' -U postgres"
+  - "bundle exec rake db:migrate"
