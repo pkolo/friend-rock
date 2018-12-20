@@ -2,8 +2,8 @@ class User < ApplicationRecord
   has_secure_password
   has_secure_token
 
-  has_many :band_memberships
-  has_many :bands, through: :band_memberships
+  has_many :project_memberships
+  has_many :projects, through: :project_memberships
 
   # This method is not available in has_secure_token
   def invalidate_token

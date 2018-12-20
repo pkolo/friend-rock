@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :band_membership do
-    band
+  factory :project_membership do
+    project
     user
     role { ["Guitar", "Drums", "Bass", "Producer"].sample }
   end

@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :band do
+  factory :project do
     name { Faker::Lorem.word.capitalize }
     bio { Faker::Lorem.paragraph }
 
@@ -8,11 +8,11 @@ FactoryBot.define do
       number_of_members { 3 }
     end
 
-    after(:create) do |band, evaulator|
+    after(:create) do |project, evaulator|
       if evaulator.members.any?
-        build :band_membership, user: member, band: band
+        build :project_membership, user: member, project: project
       else
-        evaulator.number_of_members.times { |n| create :band_membership, band: band }
+        evaulator.number_of_members.times { |n| create :project_membership, project: project }
       end
     end
   end
