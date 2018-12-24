@@ -1,0 +1,5 @@
+Hello <%= @user.username %>
+
+Thanks for registering! To confirm your registration click the URL below.
+
+<%= link_to "Click Here", verify_email_api_v1_user_url(@user) %>

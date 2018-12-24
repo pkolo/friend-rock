@@ -7,6 +7,47 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "validations" do
+    let!(:valid_user) { build :user }
+
+    it "validates presence of password" do
+      invalid_user = valid_user
+      invalid_user.password = nil
+
+      expect(invalid_user).not_to be_valid
+    end
+
+    it "validates presence of email" do
+      invalid_user = valid_user
+      invalid_user.email = nil
+
+      expect(invalid_user).not_to be_valid
+    end
+
+    it "validates presence of username" do
+      invalid_user = valid_user
+      invalid_user.username = nil
+
+      expect(invalid_user).not_to be_valid
+    end
+  end
+
+  describe "callbacks" do
+    describe "after_create" do
+      describe "#generate_confirmation_token" do
+        let!(:user) { build :user }
+
+        it "generates a confirmation token for the user" do
+          expect(user.confirmation_token).to be nil
+
+          user.save!
+
+          expect(user.confirmation_token).not_to be nil
+        end
+      end
+    end
+  end
+
   describe ".valid_login" do
     let(:user) { create :user }
 
@@ -44,6 +85,20 @@ RSpec.describe User, type: :model do
       user.invalidate_token
 
       expect(user.token).to be nil
+    end
+  end
+
+  describe "#verify_email" do
+    let(:user) { create :user }
+
+    it "sets email_confirmed and invalidates the confirmation token" do
+      expect(user.email_confirmed).to be false
+      expect(user.confirmation_token).not_to be nil
+
+      user.verify_email
+
+      expect(user.email_confirmed).to be true
+      expect(user.confirmation_token).to be nil
     end
   end
 end
