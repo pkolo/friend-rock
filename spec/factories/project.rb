@@ -8,11 +8,15 @@ FactoryBot.define do
       number_of_members { 3 }
     end
 
-    after(:create) do |project, evaulator|
-      if evaulator.members.any?
+    after(:build) do |project, evaluator|
+      project.user = build :user
+    end
+
+    after(:create) do |project, evaluator|
+      if evaluator.members.any?
         build :project_membership, user: member, project: project
       else
-        evaulator.number_of_members.times { |n| create :project_membership, project: project }
+        evaluator.number_of_members.times { |n| create :project_membership, project: project }
       end
     end
   end

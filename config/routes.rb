@@ -9,6 +9,8 @@ Rails.application.routes.draw do
           get :verify_email
         end
       end
+
+      resources :projects, only: [:create, :show]
     end
   end
 end

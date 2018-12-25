@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "validations" do
-    let!(:valid_user) { build :user }
+    let!(:valid_user) { build :user, :unverified }
 
     it "validates presence of password" do
       invalid_user = valid_user
@@ -89,7 +89,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "#verify_email" do
-    let(:user) { create :user }
+    let(:user) { create :user, :unverified }
 
     it "sets email_confirmed and invalidates the confirmation token" do
       expect(user.email_confirmed).to be false
