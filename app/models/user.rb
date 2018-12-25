@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :username, presence: true
 
+  has_many :owned_projects, class_name: "Project"
   has_many :project_memberships
   has_many :projects, through: :project_memberships
 
@@ -17,7 +18,6 @@ class User < ApplicationRecord
     end
   end
 
-  # This method is not available in has_secure_token
   def invalidate_token
     self.update_columns(token: nil)
   end
